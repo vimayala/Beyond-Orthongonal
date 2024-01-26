@@ -10,14 +10,15 @@ class Movement extends Phaser.Scene {
     }
 
     init() {
-        this.PLAYER_VELOCITY = 5
+        this.PLAYER_VELOCITY = 350
     }
 
     create() {
         this.cameras.main.setBackgroundColor(0xDDDDDD)
-        this.player = this.add.sprite(width / 2, height / 2, 'character', 1).setScale(2)
-
+        this.player = this.physics.add.sprite(width / 2, height / 2, 'character', 1).setScale(2)
+        this.player.body.setCollideWorldBounds(true)
         cursors = this.input.keyboard.createCursorKeys()
+        this.player.body.setSize(32, 32).setOffset(8, 16)
     }
 
     update() {
@@ -39,7 +40,9 @@ class Movement extends Phaser.Scene {
 
         playerVector.normalize()
 
-        this.player.x += playerVector.x * this.PLAYER_VELOCITY
-        this.player.y += playerVector.y * this.PLAYER_VELOCITY
+        this.player.setVelocity(this.PLAYER_VELOCITY * playerVector.x, this.PLAYER_VELOCITY * playerVector.y)
+
+        // this.player.x += playerVector.x * this.PLAYER_VELOCITY
+        // this.player.y += playerVector.y * this.PLAYER_VELOCITY
     }
 }

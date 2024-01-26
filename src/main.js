@@ -13,6 +13,12 @@ let config = {
     render: {
         pixelArt: true
     },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true
+        }
+    },
     scene: [ Movement ]
 
 }
